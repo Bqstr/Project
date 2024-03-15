@@ -198,37 +198,24 @@
 </div>
 
 
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     // Check if there was an error before refreshing the page
-    document.addEventListener("DOMContentLoaded", function() {
+    $(document).ready(function() {
         var urlParams = new URLSearchParams(window.location.search);
         var errorParam = urlParams.get('error');
-        if (errorParam) {
-            // Error was detected, show the error message
-            document.getElementById("invalid_email_password").style.display = "block";
-            // Set sessionStorage to indicate that the error was displayed
-            sessionStorage.setItem('errorDisplayed', 'true');
-        } else {
-            // No error detected, hide the error message
-            document.getElementById("invalid_email_password").style.display = "none";
+        if (!errorParam) {
+            // No error parameter detected, redirect back to /auth
+            window.location.href = '/auth';
         }
     });
 
-    // Hide the error message when the page is loaded
-    window.onload = function() {
-        // Remove the 'errorDisplayed' key from sessionStorage
-        sessionStorage.removeItem('errorDisplayed');
-    };
-
-    // When the page is about to be refreshed or closed
-    window.onbeforeunload = function() {
-        // Check if the error was displayed
-        var errorDisplayed = sessionStorage.getItem('errorDisplayed');
-        if (errorDisplayed) {
-            // Redirect back to '/auth' to remove the error parameter
-            window.location.href = '/auth';
-        }
-    };
+    $('#myModal__close, #myOverlay').click(function () {
+        $('#myModal, #myOverlay').animate({opacity: 0}, 198, function () {
+            $(this).css('display', 'none');
+            $('#myOverlay').fadeOut(297);
+        });
+    });
 </script>
 </body>
 </html>
