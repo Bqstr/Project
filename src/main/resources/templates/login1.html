@@ -200,13 +200,12 @@
 
 <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-    // Check if there was an error before refreshing the page
+    // Показываем блок с сообщением об ошибке, если параметр 'error' присутствует в URL
     $(document).ready(function() {
         var urlParams = new URLSearchParams(window.location.search);
         var errorParam = urlParams.get('error');
-        if (!errorParam) {
-            // No error parameter detected, redirect back to /auth
-            window.location.href = '/auth';
+        if (errorParam) {
+            $('#invalid_email_password').show(); // Показываем блок с сообщением об ошибке
         }
     });
 
@@ -215,6 +214,11 @@
             $(this).css('display', 'none');
             $('#myOverlay').fadeOut(297);
         });
+    });
+
+    // Скрываем блок с сообщением об ошибке при обновлении страницы
+    $(window).on('beforeunload', function() {
+        $('#invalid_email_password').hide(); // Скрываем блок с сообщением об ошибке
     });
 </script>
 </body>
