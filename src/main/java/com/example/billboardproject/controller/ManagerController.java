@@ -65,7 +65,7 @@ public class ManagerController {
         model.addAttribute("currentMonth", currentMonth);
         model.addAttribute("billboards", billboardService.getAllActiveBillboards());
         model.addAttribute("notActiveBillboards", billboardService.getAllNotActiveBillboards());
-        return "AllBilboards";
+        return "allBilboards";
     }
 
     @PreAuthorize("hasAnyAuthority('MANAGER')")
