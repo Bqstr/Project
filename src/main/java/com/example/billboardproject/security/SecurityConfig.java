@@ -12,9 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-//@EnableWebSecurity
-//@EnableMethodSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true, securedEnabled = true)
+//@EnableWebSecurity  // Uncomment if using @EnableWebSecurity
+//@EnableMethodSecurity  // Uncomment if using method security annotations
+//@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true, securedEnabled = true)  // Uncomment if using method security annotations with prePostEnabled
+
 public class SecurityConfig {
 
     @Autowired
@@ -36,13 +37,22 @@ public class SecurityConfig {
         authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
 
         http.exceptionHandling().accessDeniedPage("/forbidden");
-        http.authorizeRequests().antMatchers("/css/**", "/js/**").permitAll();
+        http.authorizeRequests().antMatchers("/css/", "/js/").permitAll();
 
 
         http.formLogin()
                 .loginProcessingUrl("/auth").permitAll()
                 .defaultSuccessUrl("/mainPage")
-                .failureUrl("/auth/?error")
+                .failureHandler((request, response, authenticationException) -> {
+                    if (Boolean.parseBoolean(request.getParameter("errorAttempt"))) {
+                        // Already on error state, don't redirect
+                        response.setContentType("text/plain");
+                        response.getWriter().println("Authentication failed");
+                    } else {
+                        // First time login attempt failed, redirect with error flag
+                        response.sendRedirect("/auth/?error&errorAttempt=true");
+                    }
+                })
                 .usernameParameter("user_email")
                 .passwordParameter("user_password")
                 .loginPage("/").permitAll();
