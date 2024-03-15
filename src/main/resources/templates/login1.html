@@ -200,15 +200,6 @@
 
 <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-    // Показываем блок с сообщением об ошибке, если параметр 'error' присутствует в URL
-    $(document).ready(function() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var errorParam = urlParams.get('error');
-        if (errorParam) {
-            $('#invalid_email_password').show(); // Показываем блок с сообщением об ошибке
-        }
-    });
-
     $('#myModal__close, #myOverlay').click(function () {
         $('#myModal, #myOverlay').animate({opacity: 0}, 198, function () {
             $(this).css('display', 'none');
@@ -216,10 +207,12 @@
         });
     });
 
-    // Скрываем блок с сообщением об ошибке при обновлении страницы
-    $(window).on('beforeunload', function() {
-        $('#invalid_email_password').hide(); // Скрываем блок с сообщением об ошибке
-    });
+  window.onload = function() {
+  if (window.location.href.indexOf("?error") !== -1) {
+    const cleanUrl = window.location.href.split("?")[0];
+    window.location.replace(cleanUrl);
+  }
+};
 </script>
 </body>
 </html>
