@@ -198,11 +198,19 @@
 </div>
 
 
-<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-    // Скрываем элемент с сообщением об ошибке при загрузке страницы
+    // Проверяем, было ли у нас сообщение об ошибке перед обновлением страницы
+    document.addEventListener("DOMContentLoaded", function() {
+        var errorDisplayed = sessionStorage.getItem('errorDisplayed');
+        if (errorDisplayed) {
+            // Сообщение об ошибке было отображено, поэтому мы его снова отображаем
+            document.getElementById("invalid_email_password").style.display = "block";
+        }
+    });
+
+    // Скрываем сообщение об ошибке при загрузке страницы
     window.onload = function() {
-        document.getElementById("invalid_email_password").style.display = "none";
+        sessionStorage.removeItem('errorDisplayed'); // Удаляем ключ из sessionStorage
     };
 </script>
 </body>
