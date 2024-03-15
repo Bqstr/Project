@@ -201,10 +201,16 @@
 <script type="text/javascript">
     // Проверяем, было ли у нас сообщение об ошибке перед обновлением страницы
     document.addEventListener("DOMContentLoaded", function() {
-        var errorDisplayed = sessionStorage.getItem('errorDisplayed');
-        if (errorDisplayed) {
-            // Сообщение об ошибке было отображено, поэтому мы его снова отображаем
+        var urlParams = new URLSearchParams(window.location.search);
+        var errorParam = urlParams.get('error');
+        if (errorParam) {
+            // Ошибка была обнаружена, показываем сообщение об ошибке
             document.getElementById("invalid_email_password").style.display = "block";
+            // Сохраняем информацию о том, что сообщение об ошибке было показано
+            sessionStorage.setItem('errorDisplayed', 'true');
+        } else {
+            // Ошибка не обнаружена, скрываем сообщение об ошибке
+            document.getElementById("invalid_email_password").style.display = "none";
         }
     });
 
