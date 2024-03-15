@@ -207,12 +207,18 @@
         });
     });
 
-  window.onload = function() {
-  if (window.location.href.indexOf("?error") !== -1) {
-    const cleanUrl = window.location.href.split("?")[0];
-    window.location.replace(cleanUrl);
-  }
-};
+    window.onload = function() {
+        if (window.location.href.indexOf("?error") !== -1) {
+            if (!sessionStorage.getItem('pageRefreshed')) {
+                sessionStorage.setItem('pageRefreshed', 'true');
+            } else {
+                const cleanUrl = window.location.href.split("?")[0];
+                window.location.replace(cleanUrl);
+            }
+        } else {
+            sessionStorage.removeItem('pageRefreshed');
+        }
+    };
 </script>
 </body>
 </html>
