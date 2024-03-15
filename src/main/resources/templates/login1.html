@@ -199,24 +199,35 @@
 
 
 <script type="text/javascript">
-    // Проверяем, было ли у нас сообщение об ошибке перед обновлением страницы
+    // Check if there was an error before refreshing the page
     document.addEventListener("DOMContentLoaded", function() {
         var urlParams = new URLSearchParams(window.location.search);
         var errorParam = urlParams.get('error');
         if (errorParam) {
-            // Ошибка была обнаружена, показываем сообщение об ошибке
+            // Error was detected, show the error message
             document.getElementById("invalid_email_password").style.display = "block";
-            // Сохраняем информацию о том, что сообщение об ошибке было показано
+            // Set sessionStorage to indicate that the error was displayed
             sessionStorage.setItem('errorDisplayed', 'true');
         } else {
-            // Ошибка не обнаружена, скрываем сообщение об ошибке
+            // No error detected, hide the error message
             document.getElementById("invalid_email_password").style.display = "none";
         }
     });
 
-    // Скрываем сообщение об ошибке при загрузке страницы
+    // Hide the error message when the page is loaded
     window.onload = function() {
-        sessionStorage.removeItem('errorDisplayed'); // Удаляем ключ из sessionStorage
+        // Remove the 'errorDisplayed' key from sessionStorage
+        sessionStorage.removeItem('errorDisplayed');
+    };
+
+    // When the page is about to be refreshed or closed
+    window.onbeforeunload = function() {
+        // Check if the error was displayed
+        var errorDisplayed = sessionStorage.getItem('errorDisplayed');
+        if (errorDisplayed) {
+            // Redirect back to '/auth' to remove the error parameter
+            window.location.href = '/auth';
+        }
     };
 </script>
 </body>
