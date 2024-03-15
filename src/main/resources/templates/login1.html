@@ -200,12 +200,10 @@
 
 <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-    $('#myModal__close, #myOverlay').click(function () {
-        $('#myModal, #myOverlay').animate({opacity: 0}, 198, function () {
-            $(this).css('display', 'none');
-            $('#myOverlay').fadeOut(297);
-        });
-    });
+    // Скрываем элемент с сообщением об ошибке при загрузке страницы
+    window.onload = function() {
+        document.getElementById("invalid_email_password").style.display = "none";
+    };
 </script>
 </body>
 </html>
