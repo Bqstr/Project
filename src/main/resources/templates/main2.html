@@ -910,7 +910,7 @@
     <div class="cards">
       <div class="cards_item" th:each="billboard : ${billboards}">
         <div class="img_banner">
-          <img th:src="@{${billboard.billboard_url}}" alt="#">
+          <img th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" id="addImg" alt="">
           <!--          <img th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" alt="#">-->
           <a href="#">Featured</a>
           <p th:text="'Per month ' + ${billboard.price} + '$'"></p>
