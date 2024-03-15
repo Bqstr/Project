@@ -515,10 +515,11 @@
     <div class="sidebar_items">
       <div class="enter">
         <img src="/img/user.png" class="user-pic" onclick="toggleMenu()">
-        <div class="name">
-          <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
-          <p>Super Admin</p>
-        </div>
+          <div class="name">
+              <p th:if="${#authorization.expression('isAuthenticated()')}"
+                 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
+              <p th:unless="${#authorization.expression('isAuthenticated()')}">Anonymous User</p>
+          </div>
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
             <div class="uer-info">
