@@ -326,16 +326,25 @@ a {
     color: #FFF;
     margin-right: 15px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-.btn .delete button {
-    width: 100px;
+
+.btn .delete button{
+    width: 242px;
     padding: 6px;
     border-radius: 10px;
-    background: #525252;
+    background: #A52800;
     color: #FFF;
+    margin-right: 15px;
     cursor: pointer;
 }
+
+
+
+
+
+
 
 .btn .recDelete button {
     width: 100px;
