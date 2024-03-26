@@ -604,8 +604,10 @@
                     <div class="btn">
 
 
-          <a class="delete" th:href="link_to_delete"  >
+          <a class="delete"    >
+          <a class="delete" ,data-billboard-id="123">
               <button>Delete</button>
+            </a>
             </a>
 
                       </div>
@@ -683,6 +685,44 @@
 </script>
 <script>
 
+
+<!--  -->
+<!--  $('.delete').click( function(event){-->
+<!--        event.preventDefault();-->
+<!--        $('#myOverlay').fadeIn(297,  function(){-->
+<!--            $('#myModal')-->
+<!--                .css('display', 'block')-->
+<!--                .animate({opacity: 1}, 198);-->
+<!--        });-->
+<!--    });-->
+
+<!--    -->
+
+
+
+  $('.delete').click(function(event) {
+    event.preventDefault();
+    var billboardId = $(this).closest('.circle').find('.id span').text(); // Retrieve billboard ID from the DOM
+
+    $(this).closest('.cards_item').remove();
+
+    $.ajax({
+      type: 'POST',
+      url: '/admin/deleteBillboard',
+      data: { billboardId: billboardId },
+      success: function(response) {
+        console.log('Billboard deleted successfully.');
+      },
+      error: function(xhr, status, error) {
+        console.error('Error deleting billboard:', error);
+      }
+    });
+
+
+
+
+
+
   // Get the input field elements and button
   var inputField1 = document.getElementById('inputField1');
   var inputField2 = document.getElementById('inputField2');
@@ -695,29 +735,59 @@
   });
 </script>
 <script>
-  $('.delete').click(function (event) {
-    event.preventDefault();
-    $('#myOverlay').fadeIn(297, function () {
-      $('.myModal')
-              .css('display', 'block')
-              .animate({opacity: 1}, 198);
-    });
-  });
 
-  $('#myModal__close, #myOverlay').click(function () {
-    $('.myModal').animate({opacity: 0}, 198, function () {
-      $(this).css('display', 'none');
-      $('#myOverlay').fadeOut(297);
-    });
-  });
-  $('#close, #myOverlay').click(function () {
-    $('.myModal').animate({opacity: 0}, 198, function () {
-      $(this).css('display', 'none');
-      $('#myOverlay').fadeOut(297);
-    });
-  });
+
+
+
+
+
+
+<!--  $('.delete').click(function (event) {-->
+<!--    event.preventDefault();-->
+<!--    $('#myOverlay').fadeIn(297, function () {-->
+<!--      $('.myModal')-->
+<!--              .css('display', 'block')-->
+<!--              .animate({opacity: 1}, 198);-->
+<!--    });-->
+<!--  });-->
+
+<!--  $('#myModal__close, #myOverlay').click(function () {-->
+<!--    $('.myModal').animate({opacity: 0}, 198, function () {-->
+<!--      $(this).css('display', 'none');-->
+<!--      $('#myOverlay').fadeOut(297);-->
+<!--    });-->
+<!--  });-->
+<!--  $('#close, #myOverlay').click(function () {-->
+<!--    $('.myModal').animate({opacity: 0}, 198, function () {-->
+<!--      $(this).css('display', 'none');-->
+<!--      $('#myOverlay').fadeOut(297);-->
+<!--    });-->
+<!--  });-->
 </script>
 <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
   }

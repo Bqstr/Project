@@ -94,11 +94,6 @@
             margin: 15px 0 10px;
         }
 
-        .detail_btn button[type="submit"] {
-            width: 200%;
-            height: 200%;
-        }
-
         .sub-menu-wrap {
             position: absolute;
             top: 88%;
@@ -680,34 +675,21 @@
                         <div class="form_each_line">
                             <label>Location</label>
                             <input type="text" name="id" th:value="${billboard.id}" hidden>
-<!--                            <input type="text" name="location" th:value="${billboard.location}">-->
-
-                             <select id="location" name="location">
-                                <option th:value="${billboard.location}">Mega 1</option>
-                                <option  th:value="${billboard.location}">Mega 2</option>
-                            </select>
-
+                            <input type="text" name="location" th:value="${billboard.location}">
                         </div>
                         <div class="form_each_line">
                             <label>City</label>
-                            <select id="city" name="city">
-                                <option  value="Almaty">Almaty</option>
-                                <option  value="Kaskelen">Kaskelen</option>
-                            </select>
+                            <input type="text" name="city" th:value="${billboard.city}" disabled>
                         </div>
                         <div class="form_each_line">
                             <label>Type</label>
-                             <select id="type" name="type">
-                                <option  value="One-Sided">One-Sided</option>
-                                <option  value="Two-Sided">Two-Sided</option>
-                            </select>
+                            <input type="text" name="type" th:value="${billboard.type}" disabled>
                         </div>
                         <div class="form_each_line">
                             <label for="Size">Size</label>
                             <select id="size" name="size">
                                 <option th:selected="${billboard.size eq '3x6m'}" value="3x6m">3x6m</option>
                                 <option th:selected="${billboard.size eq '3x5m'}" value="3x5m">3x5m</option>
-                                <option th:selected="${billboard.size eq '3x7m'}" value="3x7m">3x7m</option>
                                 <option th:selected="${billboard.size eq '3x7m'}" value="3x7m">3x7m</option>
                             </select>
                         </div>
@@ -726,7 +708,9 @@
                         </div>
                         <div class="detail_btn">
                             <button type="submit">Save</button>
-<!--                            <button class="delete_btn">Delete</button>-->
+                            <!--                            <div class="delete_btn">-->
+                            <button class="delete_btn">Delete</button>
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
