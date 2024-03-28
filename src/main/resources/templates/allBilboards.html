@@ -323,13 +323,18 @@
       margin-bottom: 23px;
     }
     .btn {
-      display: flex;
-      justify-content: end;
-      align-items: center;
+    margin-top: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     }
 
+
+
+
+
     .btn .detail button{
-      width: 242px;
+      width: 162px;
       padding: 6px;
       border-radius: 10px;
       background: #ccc;
@@ -339,14 +344,16 @@
     }
 
     .btn .delete button{
-      width: 242px;
+
+
+
+      width: 162px;
       padding: 6px;
       border-radius: 10px;
       background: #A52800;
       color: #FFF;
       margin-right: 15px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
     .btn .recDelete button {
@@ -594,23 +601,10 @@
             <a class="detail" th:href="@{'/admin/detailEditBillboard/'+${billboard.id}}">
               <button>Edit</button>
             </a>
-
-
-
-          </div>
-
-
-
-                    <div class="btn">
-
-
-          <a class="delete"    >
-          <a class="delete" ,data-billboard-id="123">
+            <a class="delete"  >
               <button>Delete</button>
             </a>
-            </a>
-
-                      </div>
+          </div>
 
 
 
